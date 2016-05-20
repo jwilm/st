@@ -1,15 +1,18 @@
 st - simple terminal
---------------------
+====================
 st is a simple terminal emulator for X which sucks less.
 
+# THIS IS A FORK
 
-Requirements
-------------
+This is a fork of the st code from suckless.org. The original can be found at
+[suckless][].
+
+## Requirements
+
 In order to build st you need the Xlib header files.
 
+## Installation
 
-Installation
-------------
 Edit config.mk to match your local setup (st is installed into
 the /usr/local namespace by default).
 
@@ -19,8 +22,8 @@ necessary as root):
     make clean install
 
 
-Running st
-----------
+## Running st
+
 If you did not install st with make clean install, you must compile
 the st terminfo entry with the following command:
 
@@ -28,7 +31,8 @@ the st terminfo entry with the following command:
 
 See the man page for additional details.
 
-Credits
--------
+## Credits
+
 Based on Aurélien APTEL <aurelien dot aptel at gmail dot com> bt source code.
 
+[suckless]: http://st.suckless.org/
