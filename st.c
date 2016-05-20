@@ -35,6 +35,8 @@
 
 char *argv0;
 
+extern char **environ;
+
 #define Glyph Glyph_
 #define Font Font_
 
@@ -336,6 +338,7 @@ static void printsel(const Arg *);
 static void printscreen(const Arg *) ;
 static void toggleprinter(const Arg *);
 static void sendbreak(const Arg *);
+static void st_fullscreen(const Arg*);
 
 /* Config.h for applying patches and the configuration. */
 #include "config.h"
@@ -1369,6 +1372,22 @@ execsh(void)
 
 	execvp(prog, args);
 	_exit(1);
+}
+
+void
+st_fullscreen(const Arg* unused)
+{
+	if (fork() != 0) {
+		return;
+	}
+
+	char winid[sizeof(long) * 8 + 1];
+	snprintf(winid, sizeof(winid), "%lu", xw.win);
+	char * const args[] = {
+		"wmctrl", "-ir", winid, "-b", "toggle,fullscreen", NULL
+	};
+
+	execve("/usr/bin/wmctrl", args, environ);
 }
 
 void
